@@ -1,0 +1,47 @@
+5 ------------------------------
+
+ioctl(uint32_t fd, uint32_t request, uint32_t argument)
+
+Mostly used for modifying special files.
+
+6.1 ----------------------------
+
+Half-duplex unix pipes
+FIFOs (named pipes)
+message queue
+semaphore sets
+memory segments
+Networking sockets
+Full duplex pipes
+
+6.2 ----------------------------
+
+ls | sort | lp -> pipes
+ Under Linux, in particular, pipes are actually represented internally with a
+ valid inode. Of course, this inode resides within the kernel itself, and not
+ within the bounds of any physical file system.
+
+
+ Open a process with in and out file descriptors. Fork a child process. The
+ process will have the same fd associated to it. We close the fds to decide
+ the flow of info
+
+ |--------|    |---------|    |---------|
+ | P1   in| <- |  Kernel | -> |in    P2 |
+ |     out| -> |         | <- |out      |
+ |--------|    |---------|    |---------|
+
+ 
+ |--------|    |---------|    |---------|
+ | P1   in| <- |  Kernel |    |in    P2 |
+ |     out|    |         | <- |out      |
+ |--------|    |---------|    |---------|
+
+Pipe constructed.
+
+"pipe()" -> syscall to create pipes
+
+Takes in an array of int of size 2 as argument
+fd[0] is setfor reading, fd[1] is set for writing
+
+
