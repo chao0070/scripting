@@ -44,4 +44,5 @@ Pipe constructed.
 Takes in an array of int of size 2 as argument
 fd[0] is setfor reading, fd[1] is set for writing
 
-
+int dup(int oldFd) -> duplicating the file descriptor
+int dup2(int oldFd, int newFd) -> duplicate the file descriptor and close it
